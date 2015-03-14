@@ -17,9 +17,6 @@
 @import "bootstrap-sass-official/assets/stylesheets/bootstrap-sprockets";
 @import "bootstrap-sass-official/assets/stylesheets/bootstrap";
 
-graph {
-  box-sizing: initial;
-}
 
 $lightPink: #FFBAD1;
 
@@ -32,10 +29,24 @@ $blue: #2196F3;
 $lightRed: #F88686;
 $lightOrange: #F8BB86;
 
-html {
-  height: 100%;
+
+html, body, .view-frame {
+	height: 100%;
 }
 
-body, .viewContainer {
-  height: 100%;
+.boardContainer {
+	height: 100%;
+	background: red;
+}
+
+.topBoard {
+	
+}
+
+.turnBar {
+
+}
+
+.bottomBoard {
+
 }
