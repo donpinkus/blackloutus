@@ -88,6 +88,27 @@ myApp.directive('hand', function(){
   }
 });
 
+myApp.directive('battleFieldCard', function(){
+  return {
+    scope: {
+      card: "="
+    },
+    replace: true,
+    link: function(scope, elem, attrs) {
+      scope.tap = function(){
+        scope.card.isTapped = !scope.card.isTapped;
+        scope.$apply();
+      };
+
+      // Tap & untap on click.
+      elem.bind('click', function(e){
+        scope.tap();
+      });
+    },
+    templateUrl: "battle-field-card.html"
+  }
+})
+
 
 
 
