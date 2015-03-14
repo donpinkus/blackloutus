@@ -105,7 +105,16 @@ html, body, .view-frame {
 }
 
 .hand {
-	
+	position: absolute;
+	bottom: -200px;
+	left: 10%;
+	transition: all .2s;
+	&:hover {
+		bottom: 0;
+	}
+	.card {
+		margin-right: 5px;
+	}
 }
 
 
