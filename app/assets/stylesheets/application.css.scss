@@ -33,6 +33,7 @@ $lightOrange: #F8BB86;
 html, body, .view-frame {
 	height: 100%;
 	font-size: 18px;
+	overflow: hidden;
 }
 
 /* Helper classes */
@@ -107,15 +108,33 @@ html, body, .view-frame {
 
 .hand {
 	position: absolute;
-	bottom: -200px;
+	bottom: -100px;
 	left: 10%;
-	transition: all .2s;
-	&:hover {
-		bottom: 0;
-	}
-	.card {
-		margin-right: 5px;
-		border-radius: 5%;
+	z-index: 1;
+	.cardContainer {
+		display: inline-block;
+		position: relative;
+		&:hover .hoveredCard {
+			display: block;
+		}
+		.card {
+			margin-right: 5px;
+			border-radius: 5%;
+			transition: all .2s;
+			z-index: 1;
+			&:hover {
+				cursor: pointer;
+			}
+		}
+		.hoveredCard {
+			display: none;
+			position: absolute;
+			z-index: 1;
+			bottom: 170px;
+			left: -70%;
+			border-radius: 5%;
+			cursor: pointer;
+		}
 	}
 }
 
