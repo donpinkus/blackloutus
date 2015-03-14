@@ -1,0 +1,26 @@
+{
+  "name": "rye",
+  "version": "0.1.0",
+  "main": "dist/rye.scss",
+  "homepage": "http://nikolaswise.github.io/rye/",
+  "authors": [
+    "Paul C Pederson <ppederson@esri.com>",
+    "Nikolas Wise <nwise@esri.com>"
+  ],
+  "description": "Ultralight sass mixin library.",
+  "keywords": [
+    "Sass",
+    "Mixins",
+    "Helpers"
+  ],
+  "license": "ISC",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "source",
+    "build"
+  ],
+  "dependencies": {
+  }
+}

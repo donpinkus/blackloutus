@@ -1,0 +1,47 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  angel_id: 1
+  title: MyString
+  description: MyText
+  listing_created_at: MyString
+  listing_updated_at: 2014-12-26 01:25:04
+  equity_min: 1.5
+  equity_max: 1.5
+  currency_code: MyString
+  job_type: MyString
+  salary_min: 1
+  salary_max: 1
+  angellist_url: MyString
+  location: MyString
+  role: MyString
+  company_name: MyString
+  company_id: 1
+  logo_url: MyString
+  product_desc: MyText
+  high_concept: MyText
+  company_url: MyString
+  page_id: 1
+
+two:
+  angel_id: 1
+  title: MyString
+  description: MyText
+  listing_created_at: MyString
+  listing_updated_at: 2014-12-26 01:25:04
+  equity_min: 1.5
+  equity_max: 1.5
+  currency_code: MyString
+  job_type: MyString
+  salary_min: 1
+  salary_max: 1
+  angellist_url: MyString
+  location: MyString
+  role: MyString
+  company_name: MyString
+  company_id: 1
+  logo_url: MyString
+  product_desc: MyText
+  high_concept: MyText
+  company_url: MyString
+  page_id: 1

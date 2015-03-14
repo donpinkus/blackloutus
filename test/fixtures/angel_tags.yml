@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  angel_id: 1
+  tag_type: MyString
+  name: MyText
+  display_name: MyText
+  angellist_url: MyText
+
+two:
+  angel_id: 1
+  tag_type: MyString
+  name: MyText
+  display_name: MyText
+  angellist_url: MyText

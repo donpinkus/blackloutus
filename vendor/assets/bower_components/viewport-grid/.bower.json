@@ -1,0 +1,36 @@
+{
+  "name": "viewport-grid",
+  "main": "dist/viewport-grid.css",
+  "homepage": "http://esripdx.github.io/viewport-grid/",
+  "authors": [
+    "Paul C Pederson <ppederson@esri.com>",
+    "Nikolas Wise <nwise@esri.com>"
+  ],
+  "description": "A responsive grid system built on viewport width with classical grid theory.",
+  "keywords": [
+    "Viewport",
+    "Grid",
+    "system",
+    "Brockman"
+  ],
+  "license": "ISC",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "documentation",
+    "source",
+    "test",
+    "site"
+  ],
+  "dependencies": {},
+  "_release": "58a5d32884",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "58a5d32884375fa2369a57611fae7751d53b784b"
+  },
+  "_source": "git://github.com/esripdx/viewport-grid.git",
+  "_target": "*",
+  "_originalSource": "viewport-grid"
+}
