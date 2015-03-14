@@ -1,6 +1,18 @@
-<main class="boardContainer">
-  <div class="topBoard">I'm the top part of the board!</div>
+<main class="boardContainer flex-column">
+  <div class="topBoard flex">I'm the top part of the board!</div>
   <div class="turnBar">
+  	<div class="step-container flex">
+  	  <span data-turn-step="1" class="active">Untap</span>
+		  <span data-turn-step="2">Upkeep</span>
+		  <span data-turn-step="3">Draw</span>
+		  <span data-turn-step="4">Main</span>
+		  <span data-turn-step="5">Attack</span>
+			<span data-turn-step="6">Block</span>
+			<span data-turn-step="7">Damage</span>
+			<span data-turn-step="8">Main</span>
+			<span data-turn-step="9">Cleanup</span>
+		</div>
+		<button class="btn btn-primary next-button">Next</button>
   </div>
-  <div class="bottomBoard">I'm the bottom part of the board!</div>
+  <div class="bottomBoard flex">I'm the bottom part of the board!</div>
 </main>
