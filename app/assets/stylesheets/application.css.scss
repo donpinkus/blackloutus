@@ -31,40 +31,40 @@ $lightOrange: #F8BB86;
 
 
 html, body, .view-frame {
-	height: 100%;
-	font-size: 18px;
+    height: 100%;
+    font-size: 18px;
 }
 
 .flex-column {
-	display: flex;
-	flex-direction: column;
+    display: flex;
+    flex-direction: column;
 }
 
 .flex {
-	flex: 1;
+    flex: 1;
 }
 
 .boardContainer {
-	height: 100%;
+    height: 100%;
 }
 
 .topBoard {
 }
 
 .turnBar {
-	display: flex;
-	background: $blue;
-	height: 50px;
-	align-items: center;
-	padding: 0 10px;
-	span {
-		color: white;
-		font-weight: 500;
-		margin-right: 10px;
-		&.active {
-			color: hsla(0, 0, 100, 0.7);
-		}
-	}
+    display: flex;
+    background: $blue;
+    height: 50px;
+    align-items: center;
+    padding: 0 10px;
+    span {
+        color: white;
+        font-weight: 500;
+        margin-right: 10px;
+        &.active {
+            color: hsla(0, 0, 100, 0.7);
+        }
+    }
 }
 
 .next-button {
