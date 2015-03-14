@@ -103,6 +103,9 @@ html, body, .view-frame {
 	.card {
 		margin-right: 5px;
 		border-radius: 6%;
+		&:hover {
+			cursor: pointer;
+		}
 		&.tapped {
 			opacity: 0.2;
 		}
