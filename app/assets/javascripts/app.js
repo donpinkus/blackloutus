@@ -11,7 +11,11 @@ myApp.config(['$routeProvider', function($routeProvider) {
 myApp.controller('home', ['$scope', function($scope){
   console.log('home controller loaded!');
 
-  $scope.turnStep = 1;
+  $scope.switchPlayers = function() {
+  	$scope.currentPlayer = $scope.currentPlayer == $scope.opponent
+			? $scope.plainswalker
+			: $scope.opponent;
+  }
 
   $scope.nextStep = function() {
   	$scope.turnStep = $scope.turnStep == 9 ? 1 : $scope.turnStep + 1;
@@ -19,6 +23,12 @@ myApp.controller('home', ['$scope', function($scope){
 
   	// figure out a way to track which players step's we're going through
   }
+
+  $scope.draw = function(player) {
+  	player.hand.push(player.library.pop())
+  }
+
+  $scope.turnStep = 1;
 
   $scope.opponent = {
     life: 20,
@@ -38,11 +48,11 @@ myApp.controller('home', ['$scope', function($scope){
     isOpponent: false
   }
 
-  $scope.draw = function(player) {
-  	player.hand.push(player.library.pop())
-  }
+  $scope.currentPlayer = $scope.opponent;
 
   $scope.draw($scope.plainswalker);
+
+  $scope.switchPlayers();
 }]);
 
 
