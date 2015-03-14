@@ -103,6 +103,9 @@ html, body, .view-frame {
 	.card {
 		margin-right: 5px;
 		border-radius: 6%;
+		&.tapped {
+			opacity: 0.2;
+		}
 	}
 }
 
@@ -134,6 +137,7 @@ html, body, .view-frame {
 			left: -70%;
 			border-radius: 5%;
 			cursor: pointer;
+			pointer-events: none;
 		}
 	}
 }

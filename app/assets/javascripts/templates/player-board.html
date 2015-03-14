@@ -3,27 +3,13 @@
 
   <div class="battlefield flex">
     <img 
-      ng-repeat="cardId in player.battlefield"
-      class="card" 
-      src="http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid={{ cardId }}&type=card" 
+      ng-repeat="card in player.battlefield"
+      class="card"
+      ng-class="{'card': true, 'tapped': card.isTapped}" 
+      src="http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid={{ card.id }}&type=card" 
       height="200">
   </div>
 
-
-
-  <div ng-if="!player.isOpponent" class="hand"> 
-  	<div class="cardContainer" ng-repeat="cardId in player.hand">
-	  	<img 
-	      class="card" 
-	      src="http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid={{ cardId }}&type=card" 
-	      height="200"
-	      data-card-id="{{ cardId }}" />
-
-	    <img 
-	      class="hoveredCard" 
-	      src="http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid={{ cardId }}&type=card" 
-	      height="500"
-	      data-card-id="{{ cardId }}" />
-	  </div>
-  </div>
+  <hand ng-if="!player.isOpponent"></hand>
+  
 </section>

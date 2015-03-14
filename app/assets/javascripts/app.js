@@ -35,7 +35,11 @@ myApp.controller('home', ['$scope', function($scope){
     hand: [1, 123, 342, 341, 345],
     graveyard: [],
     library: [],
-    battlefield: [1, 2, 3],
+    battlefield: [
+      {id: 34, isTapped: false},
+      {id: 190, isTapped: true},
+      {id: 760, isTapped: false}
+    ],
     isOpponent: true
   }
 
@@ -44,7 +48,9 @@ myApp.controller('home', ['$scope', function($scope){
     hand: [342, 341, 345],
     graveyard: [22, 24],
     library: [4,5,6],
-    battlefield: [431],
+    battlefield: [
+      {id: 120, isTapped: false}
+    ],
     isOpponent: false
   }
 
@@ -71,6 +77,14 @@ myApp.directive('playerInfo', function(){
     scope: false,
     replace: true,
     templateUrl: "player-info.html"
+  }
+});
+
+myApp.directive('hand', function(){
+  return {
+    scope: false,
+    replace: true,
+    templateUrl: "hand.html"
   }
 });
 
