@@ -17,28 +17,39 @@ myApp.controller('home', ['$scope', function($scope){
   	$scope.turnStep = $scope.turnStep == 9 ? 1 : $scope.turnStep + 1;
   }
 
-  $scope.playerOne = {
+  $scope.opponent = {
     life: 20,
     hand: [1, 123, 342, 341, 345],
     graveyard: [],
-    library: []
+    library: [],
+    battlefield: [1, 2, 3],
+    isOpponent: true
   }
 
-  $scope.playerTwo = {
+  $scope.plainswalker = {
     life: 13,
     hand: [342, 341, 345],
     graveyard: [22, 24],
-    library: []
+    library: [],
+    battlefield: [431],
+    isOpponent: false
   }
 }]);
 
 
-
-myApp.directive('playerInfo', function(){
+myApp.directive('playerBoard', function(){
   return {
     scope: {
       player: "="
     },
+    replace: true,
+    templateUrl: "player-board.html"
+  }
+});
+
+myApp.directive('playerInfo', function(){
+  return {
+    scope: false,
     replace: true,
     templateUrl: "player-info.html"
   }

@@ -1,0 +1,21 @@
+<section class="board flex flex-row">
+  <player-info></player-info>
+
+  <div class="battlefield flex">
+    <img 
+      ng-repeat="cardId in player.battlefield"
+      class="card" 
+      src="http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid={{ cardId }}&type=card" 
+      height="300">
+  </div>
+
+
+
+  <div ng-if="!player.isOpponent" class="hand"> 
+  	<img 
+      ng-repeat="cardId in player.hand"
+      class="card" 
+      src="http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid={{ cardId }}&type=card" 
+      height="300">
+  </div>
+</section>

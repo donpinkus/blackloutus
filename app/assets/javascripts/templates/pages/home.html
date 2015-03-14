@@ -1,15 +1,5 @@
 <main class="boardContainer flex flex-column">
-  <section class="board flex flex-row">
-    
-    <player-info player="playerOne"></player-info>
-
-    <div class="playerBoard flex">
-      <img class="card" src="warwagon.jpg" height="172">
-      <img class="card" src="warwagon.jpg" height="172">
-      <img class="card" src="warwagon.jpg" height="172">
-      <img class="card" src="warwagon.jpg" height="172">
-    </div>
-  </section>
+  <player-board player="opponent"></player-board>
 
   <nav class="turnBar">
     <div class="step-container flex">
@@ -26,7 +16,5 @@
     <button class="btn btn-primary next-button" ng-click="nextStep()">Next</button>
   </nav>
 
-  <section class="board flex flex-row">
-    <player-info player="playerTwo"></player-info>
-  </section>
+  <player-board player="plainswalker"></player-board>
 </main>

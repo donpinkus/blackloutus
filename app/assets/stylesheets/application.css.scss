@@ -72,14 +72,6 @@ html, body, .view-frame {
 	}
 }
 
-.board {
-}
-
-.playerBoard {
-	.card {
-		
-	}
-}
 
 .playerInfo {
 	background: hsl(0, 0%, 20%);
@@ -103,7 +95,18 @@ html, body, .view-frame {
 	}
 }
 
+.battlefield {
+	overflow: auto;
+	padding: 20px;
+	background: hsl(0, 0%, 20%);
+	.card {
+		margin-right: 5px;
+	}
+}
 
+.hand {
+	
+}
 
 
 
