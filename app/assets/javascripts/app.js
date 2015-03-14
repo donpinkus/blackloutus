@@ -15,6 +15,9 @@ myApp.controller('home', ['$scope', function($scope){
 
   $scope.nextStep = function() {
   	$scope.turnStep = $scope.turnStep == 9 ? 1 : $scope.turnStep + 1;
+  	// Check if current step is draw phase. if so make them draw.
+
+  	// figure out a way to track which players step's we're going through
   }
 
   $scope.opponent = {
@@ -30,10 +33,16 @@ myApp.controller('home', ['$scope', function($scope){
     life: 13,
     hand: [342, 341, 345],
     graveyard: [22, 24],
-    library: [],
+    library: [4,5,6],
     battlefield: [431],
     isOpponent: false
   }
+
+  $scope.draw = function(player) {
+  	player.hand.push(player.library.pop())
+  }
+
+  $scope.draw($scope.plainswalker);
 }]);
 
 
