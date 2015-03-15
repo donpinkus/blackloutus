@@ -26,8 +26,28 @@ myApp.controller('home', ['$scope', function($scope){
   				card.isTapped = false;
   			});
   		  break;
-  		default:
+  		case 2: // upkeep
   		  break;
+  		case 3: // draw
+  			$scope.draw($scope.currentPlayer);
+  		  break;
+  		case 4: // main
+
+  		  break;
+  		case 5: // attack
+
+  		  break;
+  		case 6: // block
+
+  		  break;
+  		case 7: // damage
+
+  		  break;
+  		case 8: // main
+
+  		  break;
+  		default: // cleanup
+  			$scope.switchPlayers();
   	}
   }
 
