@@ -88,6 +88,28 @@ myApp.directive('hand', function(){
   }
 });
 
+myApp.directive('handCard', function(){
+  return {
+    scope: false,
+    replace: true,
+    link: function(scope, elem, attrs){
+      scope.play = function(){
+        // Remove this card from hand.
+        scope.player.hand = _.without(scope.player.hand, scope.cardId);
+
+        // Add this card to battlefield,tapped.
+        scope.player.battlefield.push({ id: scope.cardId, isTapped: false });
+        scope.$apply();
+      }
+
+      elem.bind('click', function(e){
+        scope.play();
+      });
+    },
+    templateUrl: "hand-card.html"
+  }
+});
+
 myApp.directive('battleFieldCard', function(){
   return {
     scope: {

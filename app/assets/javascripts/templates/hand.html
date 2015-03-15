@@ -1,15 +1,3 @@
 <div class="hand"> 
-  	<div class="cardContainer" ng-repeat="cardId in player.hand">
-	  	<img 
-	      ng-class="{ 'card': true,  }" 
-	      src="http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid={{ cardId }}&type=card" 
-	      height="200"
-	      data-card-id="{{ cardId }}" />
-
-	    <img 
-	      class="hoveredCard" 
-	      src="http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid={{ cardId }}&type=card" 
-	      height="500"
-	      data-card-id="{{ cardId }}" />
-	  </div>
-  </div>
+	<hand-card ng-repeat="cardId in player.hand"></hand-card>
+</div>

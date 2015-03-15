@@ -25,4 +25,6 @@
 
 //= require angular-bootstrap/ui-bootstrap-tpls.js
 
+//= require underscore/underscore
+
 //= require_tree .
