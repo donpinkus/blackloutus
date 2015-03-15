@@ -1,0 +1,27 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  mana_cost: 1
+  mana_cost_img_src: MyText
+  card_type: MyString
+  card_text: MyText
+  expansion_href: MyText
+  expansion_name: MyString
+  community_rating: 1.5
+  community_votes: 1
+  card_image_alt: MyString
+  card_image_src: MyText
+
+two:
+  name: MyString
+  mana_cost: 1
+  mana_cost_img_src: MyText
+  card_type: MyString
+  card_text: MyText
+  expansion_href: MyText
+  expansion_name: MyString
+  community_rating: 1.5
+  community_votes: 1
+  card_image_alt: MyString
+  card_image_src: MyText
