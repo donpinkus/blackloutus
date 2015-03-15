@@ -131,10 +131,3 @@ myApp.directive('battleFieldCard', function(){
   }
 })
 
-
-
-
-
-    // link: function(scope, element, attrs) {
-
-    // },
