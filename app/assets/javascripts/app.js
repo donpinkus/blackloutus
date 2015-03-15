@@ -8,8 +8,25 @@ myApp.config(['$routeProvider', function($routeProvider) {
     });
   }]);
 
-myApp.controller('home', ['$scope', function($scope){
+myApp.controller('home', ['$scope', '$http', function($scope, $http){
   console.log('home controller loaded!');
+
+  // Example of how to do an "AJAX" call to the server!
+  $http.get('/api/cards/4').then(function(response){
+    console.log(response);
+  });
+
+  // Example of how to do an "AJAX" call to the server!
+  $http.get('/api/cards').then(function(response){
+    console.log('all cards');
+    console.log(response);
+  });
+
+  // Example of setting Angular variable from Ajax.
+  // $http.get('/api/decks/1').then(function(response){
+  //   var deck = response.data;
+  //   $scope.plainswalker.library = deck;
+  // });
 
   $scope.switchPlayers = function() {
   	$scope.currentPlayer = $scope.currentPlayer == $scope.opponent
