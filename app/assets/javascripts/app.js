@@ -19,25 +19,27 @@ myApp.controller('home', ['$scope', function($scope){
 
   $scope.nextStep = function() {
   	$scope.turnStep = $scope.turnStep == 9 ? 1 : $scope.turnStep + 1;
+
+  	var player = $scope.currentPlayer;
   	switch ($scope.turnStep) {
   		case 1: // untap
-  			$scope.currentPlayer.battlefield.forEach(function(card) {
+  			player.battlefield.forEach(function(card) {
   				card.isTapped = false;
   			});
   		  break;
   		case 2: // upkeep
   		  break;
   		case 3: // draw
-  			$scope.draw($scope.currentPlayer);
+  			$scope.draw(player);
   		  break;
   		case 4: // main
   			$scope.nonInstantsArePlayable = true;
-  			$scope.currentPlayer.canPlayLand = true;
+  			player.canPlayLand = true;
   			// TODO: playing a land should set this to false
   		  break;
   		case 5: // attack
   			$scope.nonInstantsArePlayable = false;
-  			$scope.currentPlayer.canPlayLand = false;
+  			player.canPlayLand = false;
   		  break;
   		case 6: // block
 
