@@ -26,7 +26,7 @@ raw_cards = [
     "name" =>  "Black Lotus",
     "mana_cost" =>  "0",
     "card_type" =>  "Artifact",
-    "card_text" =>  ", Sacrifice Black Lotus: Add three mana of any one color to your mana pool.",
+    "card_text" =>  "Sacrifice Black Lotus: Add three mana of any one color to your mana pool.",
     "expansion" =>  {
       "href" =>  "http://gatherer.wizards.com/Pages/Search/Default.aspx?action=advanced&set=[%22Limited Edition Alpha%22]",
       "text" =>  "Limited Edition Alpha"
@@ -74,7 +74,7 @@ raw_cards = [
     "name" =>  "Celestial Prism",
     "mana_cost" =>  "3",
     "card_type" =>  "Artifact",
-    "card_text" =>  ", : Add one mana of any color to your mana pool.",
+    "card_text" =>  "Add one mana of any color to your mana pool.",
     "expansion" =>  {
       "href" =>  "http://gatherer.wizards.com/Pages/Search/Default.aspx?action=advanced&set=[%22Limited Edition Alpha%22]",
       "text" =>  "Limited Edition Alpha"
