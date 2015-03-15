@@ -19,7 +19,6 @@ myApp.controller('home', ['$scope', function($scope){
 
   $scope.nextStep = function() {
   	$scope.turnStep = $scope.turnStep == 9 ? 1 : $scope.turnStep + 1;
-  	
   	switch ($scope.turnStep) {
   		case 1: // untap
   			$scope.currentPlayer.battlefield.forEach(function(card) {
@@ -32,10 +31,13 @@ myApp.controller('home', ['$scope', function($scope){
   			$scope.draw($scope.currentPlayer);
   		  break;
   		case 4: // main
-
+  			$scope.nonInstantsArePlayable = true;
+  			$scope.currentPlayer.canPlayLand = true;
+  			// TODO: playing a land should set this to false
   		  break;
   		case 5: // attack
-
+  			$scope.nonInstantsArePlayable = false;
+  			$scope.currentPlayer.canPlayLand = false;
   		  break;
   		case 6: // block
 
@@ -56,6 +58,7 @@ myApp.controller('home', ['$scope', function($scope){
   }
 
   $scope.turnStep = 1;
+  $scope.nonInstantsArePlayable = false;
 
   $scope.opponent = {
     life: 20,
@@ -67,7 +70,8 @@ myApp.controller('home', ['$scope', function($scope){
       {id: 190, isTapped: true},
       {id: 760, isTapped: false}
     ],
-    isOpponent: true
+    isOpponent: true,
+    canPlayLand: false
   }
 
   $scope.plainswalker = {
@@ -78,7 +82,8 @@ myApp.controller('home', ['$scope', function($scope){
     battlefield: [
       {id: 120, isTapped: false}
     ],
-    isOpponent: false
+    isOpponent: false,
+    canPlayLand: false
   }
 
   $scope.currentPlayer = $scope.opponent;
