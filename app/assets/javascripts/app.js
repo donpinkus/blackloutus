@@ -19,9 +19,16 @@ myApp.controller('home', ['$scope', function($scope){
 
   $scope.nextStep = function() {
   	$scope.turnStep = $scope.turnStep == 9 ? 1 : $scope.turnStep + 1;
-  	// Check if current step is draw phase. if so make them draw.
-
-  	// figure out a way to track which players step's we're going through
+  	
+  	switch ($scope.turnStep) {
+  		case 1: // untap
+  			$scope.currentPlayer.battlefield.forEach(function(card) {
+  				card.isTapped = false;
+  			});
+  		  break;
+  		default:
+  		  break;
+  	}
   }
 
   $scope.draw = function(player) {
