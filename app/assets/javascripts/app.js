@@ -68,6 +68,13 @@ myApp.controller('home', ['$scope', '$http', function($scope, $http){
   }
 
   $scope.turnStep = 1;
+
+  // TODO: Maybe we should have a canPlay(turn, turnStep, player.manaPool, card); function... not sure
+  //
+  // Turn has info about whether lands have been played
+  // TurnStep has info about the "types" that can be played
+  // player.manaPool checks whether there is enough mana to play the card
+  // Card is needed for the info
   $scope.nonInstantsArePlayable = false;
 
   $scope.opponent = {
@@ -77,7 +84,15 @@ myApp.controller('home', ['$scope', '$http', function($scope, $http){
     library: [],
     battlefield: [],
     isOpponent: true,
-    canPlayLand: false
+    canPlayLand: false,
+    manaPool: {
+      white: 0,
+      green: 0,
+      black: 0,
+      red: 0,
+      blue: 0,
+      colorless: 0
+    }
   }
 
   $scope.plainswalker = {
@@ -87,7 +102,15 @@ myApp.controller('home', ['$scope', '$http', function($scope, $http){
     library: [],
     battlefield: [],
     isOpponent: false,
-    canPlayLand: false
+    canPlayLand: false,
+    manaPool: {
+      white: 0,
+      green: 0,
+      black: 0,
+      red: 0,
+      blue: 0,
+      colorless: 0
+    }
   }
 
   // Example of setting Angular variable from Ajax.
