@@ -120,27 +120,31 @@ html, body, .view-frame {
 	.cardContainer {
 		display: inline-block;
 		position: relative;
-		&:hover .hoveredCard {
-			display: block;
+		&:hover {
+			cursor: pointer;
+			.card {
+				visibility: hidden;
+			}
+			.hoveredCard {
+				opacity: 1;
+				bottom: 120px;
+			}
 		}
 		.card {
 			margin-right: 5px;
 			border-radius: 5%;
-			transition: all .2s;
 			z-index: 1;
-			&:hover {
-				cursor: pointer;
-			}
 		}
 		.hoveredCard {
-			display: none;
+			opacity: 0;
 			position: absolute;
 			z-index: 1;
-			bottom: 170px;
+			bottom: 100px;
 			left: -70%;
 			border-radius: 5%;
 			cursor: pointer;
 			pointer-events: none;
+			transition: bottom .2s;
 		}
 	}
 }
