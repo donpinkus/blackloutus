@@ -11,22 +11,13 @@ myApp.config(['$routeProvider', function($routeProvider) {
 myApp.controller('home', ['$scope', '$http', function($scope, $http){
   console.log('home controller loaded!');
 
-  // Example of how to do an "AJAX" call to the server!
-  $http.get('/api/cards/4').then(function(response){
-    console.log(response);
-  });
-
-  // Example of how to do an "AJAX" call to the server!
-  $http.get('/api/cards').then(function(response){
-    console.log('all cards');
-    console.log(response);
-  });
-
-  // Example of setting Angular variable from Ajax.
-  // $http.get('/api/decks/1').then(function(response){
-  //   var deck = response.data;
-  //   $scope.plainswalker.library = deck;
-  // });
+  $scope.drawHand = function() {
+    for (var i = 0; i < 7; i++) {
+      var cardIndex = Math.floor(Math.random() * $scope.plainswalker.library.length)
+      $scope.plainswalker.hand.push($scope.plainswalker.library[cardIndex]);
+      $scope.plainswalker.library.splice(cardIndex, 1);
+    }
+  }
 
   $scope.switchPlayers = function() {
   	$scope.currentPlayer = $scope.currentPlayer == $scope.opponent
@@ -81,35 +72,34 @@ myApp.controller('home', ['$scope', '$http', function($scope, $http){
 
   $scope.opponent = {
     life: 20,
-    hand: [1, 123, 342, 341, 345],
+    hand: [],
     graveyard: [],
     library: [],
-    battlefield: [
-      {id: 34, isTapped: false},
-      {id: 190, isTapped: true},
-      {id: 760, isTapped: false}
-    ],
+    battlefield: [],
     isOpponent: true,
     canPlayLand: false
   }
 
   $scope.plainswalker = {
-    life: 13,
-    hand: [342, 341, 345],
-    graveyard: [22, 24],
-    library: [4,5,6],
-    battlefield: [
-      {id: 120, isTapped: false}
-    ],
+    life: 20,
+    hand: [],
+    graveyard: [],
+    library: [],
+    battlefield: [],
     isOpponent: false,
     canPlayLand: false
   }
 
+  // Example of setting Angular variable from Ajax.
+  $http.get('/api/decks/1').then(function(response){
+    var deck = response.data;
+    $scope.plainswalker.library = deck;
+
+    $scope.drawHand();
+  });
+
+
   $scope.currentPlayer = $scope.opponent;
-
-  $scope.draw($scope.plainswalker);
-
-  $scope.switchPlayers();
 }]);
 
 
@@ -146,10 +136,13 @@ myApp.directive('handCard', function(){
     link: function(scope, elem, attrs){
       scope.play = function(){
         // Remove this card from hand.
-        scope.player.hand = _.without(scope.player.hand, scope.cardId);
+        scope.player.hand = _.without(scope.player.hand, scope.card);
 
         // Add this card to battlefield,tapped.
-        scope.player.battlefield.push({ id: scope.cardId, isTapped: false });
+        var battleFieldCard = scope.card;
+        battleFieldCard.isTapped = false;
+
+        scope.player.battlefield.push(battleFieldCard);
         scope.$apply();
       }
 

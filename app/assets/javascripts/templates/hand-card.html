@@ -1,13 +1,13 @@
 <div class="cardContainer">
 	<img 
-	  ng-class="{ 'card': true,  }" 
-	  src="http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid={{ cardId }}&type=card" 
+	  class="card"
+	  src="http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid={{ card.id }}&type=card" 
 	  height="200"
-	  data-card-id="{{ cardId }}" />
+	  data-card-id="{{ card.id }}" />
 
 	<img 
 	  class="hoveredCard" 
-	  src="http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid={{ cardId }}&type=card" 
+	  src="http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid={{ card.id }}&type=card" 
 	  height="500"
-	  data-card-id="{{ cardId }}" />
+	  data-card-id="{{ card.id }}" />
 </div>
