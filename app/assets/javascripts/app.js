@@ -17,8 +17,16 @@ myApp.controller('home', ['$scope', '$http', function($scope, $http){
       $scope.plainswalker.hand.push($scope.plainswalker.library[cardIndex]);
       $scope.plainswalker.library.splice(cardIndex, 1);
     }
+    $scope.plainswalker.hand = sortHand($scope.plainswalker.hand);
   }
 
+  // TODO: attach this to a "hand" object.
+  function sortHand(hand) {
+    var hand = _.sortBy(hand, 'converted_mana_cost');
+    return hand;
+  }
+
+  // TODO: attach this to a "turn" object.
   $scope.switchPlayers = function() {
   	$scope.currentPlayer = $scope.currentPlayer == $scope.opponent
 			? $scope.plainswalker
