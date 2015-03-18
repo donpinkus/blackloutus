@@ -1,0 +1,2 @@
+module PlainsWalkersHelper
+end

@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<br/>
+
+<div class="container">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h1>Plainswalker profile</h1>
+    </div>
+    <div class="panel-body">
+      <div class="row">
+        <div class="col-sm-3">
+          <a href="#" class="thumbnail">
+            <img src="<%= @plains_walker.avatarUrl %>" >
+          </a>
+        </div>
+        <div class="col-sm-9">
+          <h2><%= @plains_walker.name %></h2>
+          <p>Wins: 0</p>
+          <p>Losses: 0</p>
+          <div class="row">
+            <div class="col-sm-12">
+              <h4>Decks</h4>
+              <hr/>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <%= link_to 'Edit', edit_plains_walker_path(@plains_walker) %> |
+  <%= link_to 'Back', plains_walkers_path %>
+
+</div>

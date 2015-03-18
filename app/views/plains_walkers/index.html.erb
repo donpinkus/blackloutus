@@ -1,0 +1,32 @@
+<div class="container">
+  <h1>Listing plains_walkers</h1>
+
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Avatarurl</th>
+        <th></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @plains_walkers.each do |plains_walker| %>
+      <tr>
+        <td><%= plains_walker.name %></td>
+        <td><img src="<%= plains_walker.avatarUrl %>" height="200"/></td>
+        <td>
+          <div class="btn-group">
+            <%= link_to 'Show', plains_walker, class: "btn btn-default" %>
+            <%= link_to 'Edit', edit_plains_walker_path(plains_walker), class: "btn btn-default" %>
+            <%= link_to 'Destroy', plains_walker, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-default" %>
+          </div>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <br>
+
+  <%= link_to 'New Plains walker', new_plains_walker_path, class: "btn btn-primary" %>
+</div>

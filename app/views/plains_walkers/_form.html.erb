@@ -1,0 +1,29 @@
+<%= form_for(@plains_walker) do |f| %>
+  <% if @plains_walker.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@plains_walker.errors.count, "error") %> prohibited this plains_walker from being saved:</h2>
+
+      <ul>
+      <% @plains_walker.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :password %><br>
+    <%= f.text_field :password %>
+  </div>
+  <div class="field">
+    <%= f.label :avatarUrl %><br>
+    <%= f.text_area :avatarUrl %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
