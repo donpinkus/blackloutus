@@ -1,0 +1,31 @@
+<%= form_for(@deck, class: "form") do |f| %>
+  <% if @deck.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@deck.errors.count, "error") %> prohibited this deck from being saved:</h2>
+
+      <ul>
+      <% @deck.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="well">
+    <div class="field form-group">
+      <%= f.label :name %><br>
+      <%= f.text_field :name, class: "form-control" %>
+    </div>
+    <div class="field form-group">
+      <%= f.label :description %><br>
+      <%= f.text_area :description, class: "form-control" %>
+    </div>
+    <div class="field form-group">
+      <%= f.label :plains_walker_id %><br>
+      <%= f.text_field :plains_walker_id, class: "form-control" %>
+    </div>
+    <div class="actions">
+      <%= f.submit class: "btn btn-primary" %>
+    </div>
+  </div>
+<% end %>

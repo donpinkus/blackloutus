@@ -1,0 +1,28 @@
+<div class="container">
+	<h1>
+		Editing deck
+		<small class="pull-right">
+			<%= link_to 'Show', @deck %> |
+			<%= link_to 'Back', decks_path %>
+		</small>
+	</h1>
+
+	<%= render 'form' %>
+	<br/>
+	<div class="well">
+		<h3>CARD SELECTION</h3>
+		<form class="form">
+			<div class="input-group">
+				<span class="input-group-addon" id="sizing-addon1">
+					<i class="glyphicon glyphicon-search"></i>
+				</span>
+				<input 
+					type="text" 
+					name="searchCards" 
+					placeholder="Search cards" 
+					class="form-control">
+				</input>
+			</div>
+		</form>
+	</div>
+</div>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150318060525) do
+ActiveRecord::Schema.define(version: 20150318071703) do
 
   create_table "cards", force: true do |t|
     t.integer  "multiverse_id"
@@ -41,6 +41,26 @@ ActiveRecord::Schema.define(version: 20150318060525) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "deck_cards", force: true do |t|
+    t.integer  "deck_id"
+    t.integer  "card_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "deck_cards", ["card_id"], name: "index_deck_cards_on_card_id"
+  add_index "deck_cards", ["deck_id"], name: "index_deck_cards_on_deck_id"
+
+  create_table "decks", force: true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.integer  "plains_walker_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "decks", ["plains_walker_id"], name: "index_decks_on_plains_walker_id"
 
   create_table "plains_walkers", force: true do |t|
     t.string   "name"

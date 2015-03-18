@@ -1,0 +1,23 @@
+<div class="container">
+	<p id="notice"><%= notice %></p>
+
+	<div class="well">
+		<p>
+		  <strong>Name:</strong>
+		  <%= @deck.name %>
+		</p>
+
+		<p>
+		  <strong>Description:</strong>
+		  <%= @deck.description %>
+		</p>
+
+		<p>
+		  <strong>Plains walker:</strong>
+		  <%= @deck.plains_walker.name %>
+		</p>
+	</div>
+
+	<%= link_to 'Edit', edit_deck_path(@deck) %> |
+	<%= link_to 'Back', decks_path %>
+</div>
