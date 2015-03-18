@@ -1,29 +1,31 @@
-<%= form_for(@plains_walker) do |f| %>
+<%= form_for @plains_walker, class: "form" do |f| %>
   <% if @plains_walker.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@plains_walker.errors.count, "error") %> prohibited this plains_walker from being saved:</h2>
+      <h2
+        ><%= pluralize(@plains_walker.errors.count, "error") %> prohibited this plains_walker from being saved:
+      </h2>
 
       <ul>
-      <% @plains_walker.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
+        <% @plains_walker.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
       </ul>
     </div>
   <% end %>
 
-  <div class="field">
+  <div class="field form-group">
     <%= f.label :name %><br>
-    <%= f.text_field :name %>
+    <%= f.text_field :name, class: "form-control" %>
   </div>
-  <div class="field">
+  <div class="field form-group">
     <%= f.label :password %><br>
-    <%= f.text_field :password %>
+    <%= f.text_field :password, class: "form-control" %>
   </div>
-  <div class="field">
+  <div class="field form-group">
     <%= f.label :avatarUrl %><br>
-    <%= f.text_area :avatarUrl %>
+    <%= f.text_area :avatarUrl, class: "form-control" %>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit class: "btn btn-primary" %>
   </div>
 <% end %>
