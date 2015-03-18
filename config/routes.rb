@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :plains_walkers
+
 	get '/api/decks/:id', to: 'home#get_deck'
 	get '/api/cards/:id', to: "home#get_card"
 	get '/api/cards', to: "home#get_all_cards"

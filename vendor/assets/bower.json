@@ -5,6 +5,7 @@
     "angular": "latest",
     "angular-route": "latest",
     "angular-bootstrap": "latest",
+    "angularjs-rails-resource": "latest",
     "underscore": "latest"
   }
 }

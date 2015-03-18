@@ -34,6 +34,9 @@ gem 'angular-rails-templates'
 
 gem "foreman"
 
+gem 'angularjs-rails-resource', '~> 2.0'
+gem 'angular_rails_csrf'
+
 gem 'seed_dump'
 
 gem 'httparty'

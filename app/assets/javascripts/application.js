@@ -20,6 +20,7 @@
 //= require hammerjs/hammer
 //= require angular-route/angular-route
 //= require angular-rails-templates
+//= require angularjs-rails-resource/angularjs-rails-resource
 
 //= require bootstrap-sass-official/assets/javascripts/bootstrap
 
