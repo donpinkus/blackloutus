@@ -1,12 +1,24 @@
 require 'open-uri'
 
-max_card_id = 4921
+
+# Card ids
+path = "http://api.mtgdb.info/cards/?fields=id"
+buffer = open(path).read
+
+card_ids_nested = JSON.parse buffer
+
+card_ids = []
+card_ids_nested.each do |card_id_pair|
+  card_ids << card_id_pair["id"]
+end
+
+max_card_id = card_ids.max
 
 # In case this task fails part way through, start from the highgest ID.
 if Card.first
-	card_id = Card.maximum(:id).next
+	starting_card_multiverse_id = Card.maximum(:multiverse_id).next
 else
-	card_id = 1
+	starting_card_multiverse_id = 1
 end
 
 # Just some logging...
@@ -14,16 +26,15 @@ puts "Initial card_id is: "
 puts card_id
 
 # GIT IT
-while card_id <= max_card_id do
-	path = "http://api.mtgdb.info/cards/#{card_id}"
+card_ids.each do |card_multiverse_id|
+  if Card.find_by_multiverse_id(card_multiverse_id)
+    puts "Card already exists in DB: "
+    puts card_multiverse_id
+    next
+  end
+
+	path = "http://api.mtgdb.info/cards/#{card_multiverse_id}"
 	buffer = open(path).read
-	
-	if buffer == "null"
-		puts "ID was null. skipping:"
-		puts card_id
-		card_id = card_id + 1
-		next
-	end
 
 	c = JSON.parse(buffer)
 
@@ -59,7 +70,5 @@ while card_id <= max_card_id do
   puts c["id"]
   puts c["name"]
   puts "card saved"
-  
-  card_id = card_id + 1
 end
 
