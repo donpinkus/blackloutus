@@ -6,8 +6,8 @@ class CreateCards < ActiveRecord::Migration
       t.integer :set_number
       t.string :name
       t.string :search_name
-      t.string :description
-      t.string :flavor
+      t.text :description
+      t.text :flavor
       t.string :colors
       t.string :mana_cost
       t.integer :converted_mana_cost
