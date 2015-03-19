@@ -3,7 +3,8 @@ myApp.controller('decksShow', ['$scope', '$http', '$routeParams', '$location', '
 	// 	$scope.deck = deck;
 	// });
 
-  $scope.decks = localStorageService.get('decks');
+  $scope.decks = localStorageService.get('decks') || [];
+
 
   // Set Deck. If ID param is set, get the deck, if not create a blank deck.
   if ($routeParams["id"]) {
