@@ -27,7 +27,7 @@ myApp.controller('decksShow', ['$scope', '$http', '$routeParams', '$location', '
 	
 	/* Search */
 	var debounceSearch = _.debounce(function() {
-			blockspring.runParsed("magic-the-gathering-card-api", { "card_name": $scope.cardName, "min_mana_cost": 0, "max_mana_cost": 10, "color": null, "primary_type": null, "sub_type": null, "min_power": 0, "max_power": 10, "min_toughness": 0, "max_toughness": 10, "rarity": null, "multiverse_id": null}, function(response){
+			blockspring.runParsed("magic-the-gathering-card-api", { "card_name": $scope.cardName, "min_mana_cost": 0, "max_mana_cost": 15, "color": null, "primary_type": null, "sub_type": null, "min_power": 0, "max_power": 15, "min_toughness": 0, "max_toughness": 15, "rarity": null, "multiverse_id": null}, function(response){
 		    console.log(response);
 		    
 		    $('.cardsLoading').addClass('hidden');
@@ -89,8 +89,15 @@ myApp.controller('decksShow', ['$scope', '$http', '$routeParams', '$location', '
 		});
 	}
 
-	$scope.removeCardFromDeck = function(index){
-		$scope.deck.cards.splice(index, 1);
+	$scope.removeCardFromDeck = function(cardToRemove){
+		// Find card in deck.
+		for (i = 0; i < $scope.deck.cards.length; i++) {
+			if ($scope.deck.cards[i].id == cardToRemove.id) {
+				$scope.deck.cards.splice(i, 1);
+				break;
+			}
+		}
+
 		updateUniqueCountedDeckCards();
 	}
 

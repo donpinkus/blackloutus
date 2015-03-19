@@ -37,7 +37,7 @@
 			
 			<div class="deckCards flex">
 				<ul class="deckCardsList">
-					<li ng-repeat="card in uniqueCountedDeckCards track by $index" ng-click="removeCardFromDeck($index)" class="{{ card.colors[0] }}">
+					<li ng-repeat="card in uniqueCountedDeckCards" ng-click="removeCardFromDeck(card)" class="{{ card.colors[0] }}">
 						<span class="badge" ng-if="card.converted_mana_cost > 0">{{ card.converted_mana_cost }}</span> &nbsp; 
 						<span>{{ card.name }}</span>
 						<span class="pull-right">x{{ card.count }}</span>
