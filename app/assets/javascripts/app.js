@@ -2,6 +2,14 @@ var myApp = angular.module('myApp', ['templates', 'ngRoute', 'ui.bootstrap', 'ra
 
 myApp.config(['$routeProvider', function($routeProvider) {
   $routeProvider
+    .when('/deck_editor', {
+      templateUrl: 'pages/decks/index.html',
+      controller: 'decksIndex'
+    })
+    .when('/deck_editor/new', {
+      templateUrl: 'pages/decks/show.html',
+      controller: 'decksShow'
+    })
     .when('/deck_editor/:id', {
       templateUrl: 'pages/decks/show.html',
       controller: 'decksShow'

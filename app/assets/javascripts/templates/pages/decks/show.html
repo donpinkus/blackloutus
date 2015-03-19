@@ -22,9 +22,10 @@
 
 		<section class="chosenCards flex-column">
 			<div class="deckInfo">
-				<h2 class="text-center deckName">Untitled Deck</h2>
-				<h4 class="text-center">{{ deckCards.length }}/60 cards</h4>
+				<input class="form-control deckName" type="text" ng-model="deck.name" value="{{ deck.name }}" />
+				<h4 class="text-center">{{ deck.cards.length }}/60 cards</h4>
 				<div class="text-center">
+					<a class="btn btn-default" href="/#/deck_editor">Cancel</a>
 					<button class="btn btn-primary" ng-click="saveDeck()">Save</button>
 				</div>
 			</div>

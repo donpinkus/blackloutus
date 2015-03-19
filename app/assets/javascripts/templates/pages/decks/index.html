@@ -1,0 +1,9 @@
+<div class="deckOuterContainer flex-column flex">
+	<h1>Your Decks</h1>
+	<div ng-repeat="deck in decks">
+		<p><a href="/#/deck_editor/{{ deck.name }}">{{ deck.name }}</a></p>
+	</div>
+	<p>
+		<a href="/#/deck_editor/new" class="btn btn-primary">Create Deck</a>
+	</p>
+</div>

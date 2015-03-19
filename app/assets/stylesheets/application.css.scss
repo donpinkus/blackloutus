@@ -168,12 +168,15 @@ html, body, .view-frame {
 		width: 300px;
 		border-left: 1px solid hsl(0, 0%, 86%);
 		.deckInfo {
-			padding: 20px 0px 10px;
+			padding: 20px 20px 10px;
 			background-image: linear-gradient(hsl(0, 100%, 100%), hsl(225, 33%, 98%));
-      		border-bottom: 1px solid hsl(210, 8%, 85%);
+      border-bottom: 1px solid hsl(210, 8%, 85%);
 			.deckName {
-				margin-top: 0px;
+				font-size: 23px;
 				font-weight: 500;
+				line-height: 23px;
+				height: 34px;
+				text-align: center;
 			}
 		}
 		.deckCards {
