@@ -28,4 +28,9 @@
 
 //= require underscore/underscore
 
+//= require selectize/dist/js/standalone/selectize.js
+//= require angular-selectize2/dist/selectize.js
+
+//= require angular-local-storage/dist/angular-local-storage.js
+
 //= require_tree .

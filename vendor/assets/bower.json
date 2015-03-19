@@ -6,6 +6,8 @@
     "angular-route": "latest",
     "angular-bootstrap": "latest",
     "angularjs-rails-resource": "latest",
-    "underscore": "latest"
+    "underscore": "latest",
+    "angular-selectize2": "latest",
+    "angular-local-storage": "latest"
   }
 }

@@ -5,3 +5,7 @@ asset 'angular-route'
 asset 'angular-bootstrap'
 asset 'angularjs-rails-resource'
 asset 'underscore'
+
+asset 'angular-selectize2'
+
+asset 'angular-local-storage'

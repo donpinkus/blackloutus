@@ -17,6 +17,7 @@
 @import "bootstrap-sass-official/assets/stylesheets/bootstrap-sprockets";
 @import "bootstrap-sass-official/assets/stylesheets/bootstrap";
 
+@import "selectize/dist/css/selectize.default.css";
 
 $lightPink: #FFBAD1;
 
@@ -149,7 +150,79 @@ html, body, .view-frame {
 	}
 }
 
+.deckEditorOuterContainer {
+	height: 100%;
+}
+.deckEditor {
+	height: 100%;
+	.cardSelector {
+		padding: 20px 20px 0px 20px;
+		.cardResults {
+			overflow: auto;
+			img {
+				border-radius: 5%;
+			}	
+		}
+	}
+	.chosenCards {
+		width: 300px;
+		border-left: 1px solid hsl(0, 0%, 86%);
+		.deckInfo {
+			padding: 20px 0px 10px;
+			background-image: linear-gradient(hsl(0, 100%, 100%), hsl(225, 33%, 98%));
+      		border-bottom: 1px solid hsl(210, 8%, 85%);
+			.deckName {
+				margin-top: 0px;
+				font-weight: 500;
+			}
+		}
+		.deckCards {
+			overflow: auto;
+			.deckCardsList {
+				list-style: none;
+				padding: 0;
+				li {
+					padding: 4px 10px;
+					font-size: 14px;
+					border-bottom: 1px solid hsl(210, 8%, 85%);
+					cursor: pointer;
+					&.blue {
+						background: #BBDEFB;
+					}
+					&.red {
+						background: #FFCDD2;
+					}
+					&.black {
+						background: #EEEEEE;
+					}
+					&.green {
+						background: #DCEDC8;
+					}
+					&.white {
+						background: #FFF8E1;
+					}
+				}
+			}
+		}
+	}
+}
+footer {
+	background-image: linear-gradient(hsl(0, 100%, 100%), hsl(225, 33%, 98%));
+  border-top: 1px solid hsl(210, 8%, 85%);
+  padding: 5px 0px 5px 20px;
+  p {
+  	margin-bottom: 0;
+  	font-size: 14px;
 
+  	a {
+  		color: $blue;
+  	}
+  }
+}
+
+.text-light {
+  color: hsl(0, 0%, 83%);
+}
 
 
 
