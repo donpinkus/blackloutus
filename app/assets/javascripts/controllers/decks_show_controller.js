@@ -32,7 +32,7 @@ myApp.controller('decksShow', ['$scope', '$http', '$routeParams', '$location', '
 		    
 		    $('.cardsLoading').addClass('hidden');
 		    progressBarWidth = 0;
-		    $('progress-bar').css('width', progressBarWidth + '%');
+		    $('.cardsLoading .progress-bar').css('width', progressBarWidth + '%');
 				$('.cardResults').removeClass('hidden');
 
 		    $scope.foundCards = response.params.cards;
@@ -46,11 +46,11 @@ myApp.controller('decksShow', ['$scope', '$http', '$routeParams', '$location', '
 		if ($scope.cardName.length > 2) {
 			var progressBarWidth = 0;
 			$('.cardsLoading').removeClass('hidden');
-			$('.progress-bar').css('width', progressBarWidth + '%');
+			$('.cardsLoading .progress-bar').css('width', progressBarWidth + '%');
 			$('.cardResults').addClass('hidden');
 			setInterval(function(){
 				progressBarWidth = progressBarWidth + 10;
-				$('.progress-bar').css('width', progressBarWidth + '%');
+				$('.cardsLoading .progress-bar').css('width', progressBarWidth + '%');
 			}, 160);
 			debounceSearch();
 		}
