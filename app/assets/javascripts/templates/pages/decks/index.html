@@ -1,9 +1,38 @@
-<div class="deckOuterContainer flex-column flex">
-	<h1>Your Decks</h1>
-	<div ng-repeat="deck in decks">
-		<p><a href="/#/deck_editor/{{ deck.name }}">{{ deck.name }}</a></p>
-	</div>
-	<p>
-		<a href="/#/deck_editor/new" class="btn btn-primary">Create Deck</a>
+<div class="decksIndex container-fluid">
+	<h1 class="text-center">Your Decks</h1>
+	<p class="text-center">
+		<a href="/#/deck_editor/new" class="btn btn-primary btn-lg">Create Deck</a>
 	</p>
+
+	<br/>
+	
+	<div class="row">
+		<div ng-repeat="deck in decks" class="col-sm-4">
+			<div class="well deckPreview">
+				<h3 class="text-center"><a href="/#/deck_editor/{{ deck.name }}">{{ deck.name }}</a></h3>
+				<div class="text-center">
+					<img src="http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid={{ deck.maxCardId }}&type=card"/>
+				</div>
+				<br/>
+
+				<div class="progress">
+				  <div class="progress-bar progress-bar-success" style="width: {{ deck.manaProportions.green }}%">
+				    <span class="sr-only">35% Complete (success)</span>
+				  </div>
+				  <div class="progress-bar progress-bar-black" style="width: {{ deck.manaProportions.black }}%">
+				    <span class="sr-only">10% Complete (danger)</span>
+				  </div>
+				  <div class="progress-bar progress-bar-warning" style="width: {{ deck.manaProportions.white }}%">
+				    <span class="sr-only">20% Complete (warning)</span>
+				  </div>
+				  <div class="progress-bar progress-bar-danger" style="width: {{ deck.manaProportions.red }}%">
+				    <span class="sr-only">10% Complete (danger)</span>
+				  </div>
+				  <div class="progress-bar progress-bar-primary" style="width: {{ deck.manaProportions.blue }}%">
+				    <span class="sr-only">10% Complete (danger)</span>
+				  </div>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
