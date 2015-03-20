@@ -14,9 +14,13 @@ myApp.config(['$routeProvider', function($routeProvider) {
       templateUrl: 'pages/decks/show.html',
       controller: 'decksShow'
     })
-    .when('/', {
+    .when('/play', {
       templateUrl: 'pages/home.html',
       controller: 'board'
+    })
+    .otherwise('/deck_editor', {
+      templateUrl: 'pages/decks/index.html',
+      controller: 'decksIndex'
     });
 }]);
 
