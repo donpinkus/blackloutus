@@ -5,6 +5,11 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
+  h2 {
+    color: hsla(0, 0%, 47%, 0.13);
+  }
+
   video {
     -webkit-box-shadow: 0 0 20px 0 hsla(0, 0%, 0%, 0.94);
     -moz-box-shadow: 0 0 20px 0 rgba(0,0,0,0.94);
@@ -12,5 +17,9 @@
   }
   .passwordContainer {
     width: 608px;
+    input {
+      background: transparent;
+      color: white;
+    }
   }
 }
