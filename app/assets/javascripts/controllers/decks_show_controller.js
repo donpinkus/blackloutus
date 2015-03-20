@@ -1,21 +1,15 @@
-myApp.controller('decksShow', ['$scope', '$http', '$routeParams', '$location', 'localStorageService', 'PlainsWalker', 'Deck', function($scope, $http, $routeParams, $location, localStorageService, PlainsWalker, Deck){
+myApp.controller('decksShow', ['$scope', '$http', '$routeParams', '$location', 'localStorageService', 'PlainsWalker', 'Deck', 'DeckService', function($scope, $http, $routeParams, $location, localStorageService, PlainsWalker, Deck, DeckService){
 	// Deck.get($routeParams.id).then(function(deck){
 	// 	$scope.deck = deck;
 	// });
 
-  $scope.decks = localStorageService.get('decks') || [];
-
 
   // Set Deck. If ID param is set, get the deck, if not create a blank deck.
   if ($routeParams["id"]) {
-    var deckName = $routeParams["id"];
-  
-    $scope.deck = _.find($scope.decks, function(deck){
-      return deck.name == deckName;
-    });
+    $scope.deck = DeckService.show(parseInt($routeParams["id"], 10));
+    console.log(JSON.stringify($scope.deck));
   } else {
-    $scope.deck = { name: "Untitled Deck", cards: [] };
-    $scope.decks.push($scope.deck);
+    $scope.deck = { id: null, name: "Untitled Deck", cards: [] };
   }
 
 	$scope.uniqueCountedDeckCards = [];
@@ -83,8 +77,7 @@ myApp.controller('decksShow', ['$scope', '$http', '$routeParams', '$location', '
 
 		// Merge
 		$scope.uniqueCountedDeckCards = _.map(uniqueDeckCards, function(card){
-			var card_id = card.id;
-			card.count = cardCounts[card_id];
+			card.count = cardCounts[card.id];
 			return card;
 		});
 	}
@@ -102,7 +95,11 @@ myApp.controller('decksShow', ['$scope', '$http', '$routeParams', '$location', '
 	}
 
 	$scope.saveDeck = function(){
-		localStorageService.set('decks', $scope.decks);
+		DeckService.save($scope.deck);
     $location.path('/deck_editor');
 	}
 }]);
+
+
+
+

@@ -1,8 +1,10 @@
-myApp.controller('decksIndex', ['$scope', '$http', '$routeParams', 'localStorageService', 'PlainsWalker', 'Deck', function($scope, $http, $routeParams, localStorageService, PlainsWalker, Deck){
-  $scope.decks = localStorageService.get('decks');
+myApp.controller('decksIndex', ['$scope', '$http', '$routeParams', 'localStorageService', 'PlainsWalker', 'Deck', 'DeckService', function($scope, $http, $routeParams, localStorageService, PlainsWalker, Deck, DeckService){
+  
+  localStorageService.set('decks', []);
+
+  $scope.decks = DeckService.index();
 
   // Add meta info to decks
-
   $scope.decks.forEach(function(deck, i, decks){
     // Mana Proportions
     var manaCounts = _.countBy(deck.cards, function(card){
@@ -21,6 +23,5 @@ myApp.controller('decksIndex', ['$scope', '$http', '$routeParams', 'localStorage
     });
 
     deck.maxCardId = maxCard.multiverse_id;
-    console.log(deck.maxCardId);
   });
 }]);

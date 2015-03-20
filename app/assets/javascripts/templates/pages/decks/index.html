@@ -1,15 +1,15 @@
 <div class="decksIndex container-fluid">
-	<h1 class="text-center">Your Decks</h1>
-	<p class="text-center">
-		<a href="/#/deck_editor/new" class="btn btn-primary btn-lg">Create Deck</a>
-	</p>
+	<h1>
+		<a href="/#/deck_editor/new" class="btn btn-primary btn-lg pull-right"><i class="glyphicon glyphicon-plus"></i> Create Deck</a>
+		Your Decks
+	</h1>
 
 	<br/>
 	
 	<div class="row">
 		<div ng-repeat="deck in decks" class="col-sm-4">
 			<div class="well deckPreview">
-				<h3 class="text-center"><a href="/#/deck_editor/{{ deck.name }}">{{ deck.name }}</a></h3>
+				<h3 class="text-center"><a href="/#/deck_editor/{{ deck.id }}">{{ deck.name }}</a></h3>
 				<div class="text-center">
 					<img src="http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid={{ deck.maxCardId }}&type=card"/>
 				</div>
@@ -35,4 +35,10 @@
 			</div>
 		</div>
 	</div>
+
+	<br/>
+
+	<p class="text-center">
+		
+	</p>
 </div>
