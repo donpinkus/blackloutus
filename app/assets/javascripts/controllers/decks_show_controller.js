@@ -20,43 +20,23 @@ myApp.controller('decksShow', ['$scope', '$http', '$routeParams', '$location', '
 	$scope.foundCards = [];
 	
 	/* Search */
-	var debounceSearch = _.debounce(function() {
-			blockspring.runParsed("magic-the-gathering-card-api", { "card_name": $scope.cardName, "min_mana_cost": 0, "max_mana_cost": 15, "color": null, "primary_type": null, "sub_type": null, "min_power": 0, "max_power": 15, "min_toughness": 0, "max_toughness": 15, "rarity": null, "multiverse_id": null}, function(response){
-		    console.log(response);
-		    
-		    $('.cardsLoading').addClass('hidden');
-		    progressBarWidth = 0;
-		    $('.cardsLoading .progress-bar').css('width', progressBarWidth + '%');
-				$('.cardResults').removeClass('hidden');
-
-		    $scope.foundCards = response.params.cards;
-		    $scope.$apply();
-		  });
-		},
-		300);
-
 	$scope.$watch('cardName', function(){
 		// Get all cards with this name
 		if ($scope.cardName.length > 2) {
-			var progressBarWidth = 0;
-			$('.cardsLoading').removeClass('hidden');
-			$('.cardsLoading .progress-bar').css('width', progressBarWidth + '%');
-			$('.cardResults').addClass('hidden');
-			setInterval(function(){
-				progressBarWidth = progressBarWidth + 10;
-				$('.cardsLoading .progress-bar').css('width', progressBarWidth + '%');
-			}, 160);
-			debounceSearch();
+			$http.get('/api/cards?name=' + $scope.cardName).then(function(results){
+				$scope.foundCards = results.data;
+			});
 		}
 	});
 
 	$scope.addToDeck = function(card){
 		try { 
 			card.colors = JSON.parse(card.colors);
-		} catch(e) { console.log('colors already parsed'); }
+		} catch(e) { 
+			console.log('colors already parsed'); 
+		}
 
 		$scope.deck.cards.push(card);
-
 		$scope.deck.cards = _.sortBy($scope.deck.cards, 'converted_mana_cost');
 
     updateUniqueCountedDeckCards();
