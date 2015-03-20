@@ -1,7 +1,4 @@
 myApp.controller('decksIndex', ['$scope', '$http', '$routeParams', 'localStorageService', 'PlainsWalker', 'Deck', 'DeckService', function($scope, $http, $routeParams, localStorageService, PlainsWalker, Deck, DeckService){
-  
-  localStorageService.set('decks', []);
-
   $scope.decks = DeckService.index();
 
   // Add meta info to decks
