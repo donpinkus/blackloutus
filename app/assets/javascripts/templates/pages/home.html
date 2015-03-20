@@ -1,20 +1,17 @@
-<main class="boardContainer flex flex-column">
-  <player-board player="opponent"></player-board>
+<div class="homeContainer">
+  <video id="gfyVid1" class="gfyVid" width="608" height="272" autoplay="" loop="" muted="muted" style="display: block;" poster="//thumbs.gfycat.com/SpicyPalatableIbex-poster.jpg">
+      <source id="webmsource" src="//zippy.gfycat.com/SpicyPalatableIbex.webm" type="video/webm">
+      <source id="mp4source" src="//zippy.gfycat.com/SpicyPalatableIbex.mp4" type="video/mp4">
+      Sorry, you don't have HTML5 video and we didn't catch this properly in javascript.  
+      You can try to view the gif directly: <a href="http://fat.gfycat.com/SpicyPalatableIbex.gif">http://fat.gfycat.com/SpicyPalatableIbex.gif</a>. 
+  </video>
 
-  <nav class="turnBar">
-    <div class="step-container flex">
-      <span data-turn-step="1" ng-class="{active: turnStep==1}">Untap</span>
-      <span data-turn-step="2" ng-class="{active: turnStep==2}">Upkeep</span>
-      <span data-turn-step="3" ng-class="{active: turnStep==3}">Draw</span>
-      <span data-turn-step="4" ng-class="{active: turnStep==4}">Main</span>
-      <span data-turn-step="5" ng-class="{active: turnStep==5}">Attack</span>
-      <span data-turn-step="6" ng-class="{active: turnStep==6}">Block</span>
-      <span data-turn-step="7" ng-class="{active: turnStep==7}">Damage</span>
-      <span data-turn-step="8" ng-class="{active: turnStep==8}">Main</span>
-      <span data-turn-step="9" ng-class="{active: turnStep==9}">Cleanup</span>
-    </div>
-    <button class="btn btn-primary next-button" ng-click="nextStep()">Next</button>
-  </nav>
+  <br/>
+  <br/>
 
-  <player-board player="plainswalker"></player-board>
-</main>
+  <div class="passwordContainer">
+    <input type="text" class="form-control" ng-model="password" placeholder="Cartago delendi est..." autofocus />
+    <br/>
+    <a ng-if="password == 'guest'" href="/#/deck_editor" class="btn btn-primary">Enter the black lotus club.</a>
+  </div>
+</div>
