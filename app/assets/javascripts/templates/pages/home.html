@@ -15,8 +15,11 @@
   <br/>
 
   <div class="passwordContainer">
-    <input type="text" class="form-control" ng-model="password" placeholder="Lou the cat says..." autofocus />
+    <input type="text" class="form-control" ng-model="password" placeholder="Lou the loves ..." autofocus />
     <br/>
-    <a ng-if="password == 'guest'" href="/#/deck_editor" class="btn btn-primary">Welcome to the black lotus club.</a>
+
+     <!-- Grats! you found the password! You must be a quest-expert! -->
+    <a ng-if="password == 'murder'" 
+    href="/#/deck_editor" class="btn btn-primary">Welcome to the black lotus club.</a>
   </div>
 </div>
