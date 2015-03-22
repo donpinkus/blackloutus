@@ -1,18 +1,26 @@
-myApp.controller('decksShow', ['$scope', '$http', '$routeParams', '$location', 'localStorageService', 'PlainsWalker', 'Deck', 'DeckService', function($scope, $http, $routeParams, $location, localStorageService, PlainsWalker, Deck, DeckService){
+myApp.controller('decksShow', 
+	['$scope', '$http', '$routeParams', '$location', 'localStorageService', 'PlainsWalker', 'Deck', 'DeckService', 
+	function($scope, $http, $routeParams, $location, localStorageService, PlainsWalker, Deck, DeckService){
+
 	$scope.currentUser = localStorageService.get('plains_walker');
-	var deckId = $routeParams["id"];
 
   // Set Deck. If ID param is set, get the deck, if not create a blank deck.
+  var deckId = $routeParams["id"];
+
+  // If a deck exists, then update it on save. If a deck did not exist, then create it on save.
+  var isDeckUpdate = null;
+
   if (deckId) {
   	Deck.get(deckId).then(function(deck){
 			$scope.deck = deck;
 		});
   } else {
-  	$scope.deck = { id: null, name: "Untitled Deck", cards: [] };
+  	$scope.deck = new Deck { id: null, name: "Untitled Deck", cards: [], plains_walker_id: $scope.currentUser.id };
   }
 
+  // Initialize an array that is used for the sidebar showing card counts. Then set it.
   $scope.uniqueCountedDeckCards = [];
-  updateUniqueCountedDeckCards();
+  setUniqueCountedDeckCards();
 
 	// Used in search
 	$scope.cardName = "";
@@ -38,12 +46,12 @@ myApp.controller('decksShow', ['$scope', '$http', '$routeParams', '$location', '
 		$scope.deck.cards.push(card);
 		$scope.deck.cards = _.sortBy($scope.deck.cards, 'converted_mana_cost');
 
-		updateUniqueCountedDeckCards();
+		setUniqueCountedDeckCards();
 	}
 
 
 	/* Deck cards */
-	function updateUniqueCountedDeckCards() {
+	function setUniqueCountedDeckCards() {
 		// Get the unique cards
 		var uniqueDeckCards = _.uniq($scope.deck.cards, false, function(card){
 			return card.id;
@@ -70,7 +78,7 @@ myApp.controller('decksShow', ['$scope', '$http', '$routeParams', '$location', '
 			}
 		}
 
-		updateUniqueCountedDeckCards();
+		setUniqueCountedDeckCards();
 	}
 
 	$scope.saveDeck = function(){
