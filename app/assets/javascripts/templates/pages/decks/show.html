@@ -3,14 +3,21 @@
 
 		<section class="cardSelector flex-column flex">
 			<div class="input-group">
-				<span class="input-group-addon" id="basic-addon1"><i class="glyphicon glyphicon-search"></i></span>
-				<input type="text" ng-model="cardName" placeholder="Enter a card name..." class="form-control" />
+				<span class="input-group-addon" id="basic-addon1">
+					<i class="glyphicon glyphicon-search"></i>
+				</span>
+				<input type="text" 
+					ng-model="cardName" 
+					placeholder="Enter a card name..." 
+					class="form-control" />
 			</div>
 
 			<br/>
 
 			<div class="cardResults flex">
-				<img ng-repeat="card in foundCards" src="http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid={{ card.multiverse_id }}&type=card" ng-click="addToDeck(card)" />
+				<img ng-repeat="card in foundCards" 
+					src="http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid={{ card.multiverse_id }}&type=card" 
+					ng-click="addToDeck(card)" />
 			</div>
 		</section>
 

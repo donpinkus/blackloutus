@@ -5,6 +5,9 @@ class DecksController < ApplicationController
   # GET /decks.json
   def index
     @decks = Deck.all
+    if params[:plains_walker_id]
+      @decks = Deck.where(plains_walker_id: params[:plains_walker_id])
+    end
   end
 
   # GET /decks/1

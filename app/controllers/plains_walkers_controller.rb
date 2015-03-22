@@ -61,6 +61,28 @@ class PlainsWalkersController < ApplicationController
     end
   end
 
+  def login
+    plains_walker = PlainsWalker.find_by_name(params[:name])
+    
+    # 1. Plainswalker name does exist, check if its password is right.
+    # 2. Plainswalker name doesnt exist, create him! Or her.
+    if plains_walker
+      if plains_walker.password == params[:password]
+        render json: { success: true, status: "Authentication successful.", plains_walker: plains_walker }
+      else
+        render json: { success: false, status: "Fuck you, you fucking hackr."}
+      end
+    else
+      # create a new one!
+      plains_walker = PlainsWalker.new
+      plains_walker.name = params[:name]
+      plains_walker.password = params[:password]
+      plains_walker.save
+      
+      render json: { success: true, status: "YOUR JOURNEY BEGINS. PLUTOS A PLANET", plains_walker: plains_walker }
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_plains_walker

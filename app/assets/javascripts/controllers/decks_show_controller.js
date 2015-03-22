@@ -1,13 +1,12 @@
 myApp.controller('decksShow', ['$scope', '$http', '$routeParams', '$location', 'localStorageService', 'PlainsWalker', 'Deck', 'DeckService', function($scope, $http, $routeParams, $location, localStorageService, PlainsWalker, Deck, DeckService){
-	// Deck.get($routeParams.id).then(function(deck){
-	// 	$scope.deck = deck;
-	// });
-
+	$scope.currentUser = localStorageService.get('plains_walker');
+	var deckId = $routeParams["id"];
 
   // Set Deck. If ID param is set, get the deck, if not create a blank deck.
-  if ($routeParams["id"]) {
-  	$scope.deck = DeckService.show(parseInt($routeParams["id"], 10));
-  	console.log(JSON.stringify($scope.deck));
+  if (deckId) {
+  	Deck.get(deckId).then(function(deck){
+			$scope.deck = deck;
+		});
   } else {
   	$scope.deck = { id: null, name: "Untitled Deck", cards: [] };
   }

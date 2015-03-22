@@ -1,8 +1,10 @@
 Rails.application.routes.draw do
 
-  resources :decks
+  post '/api/login', to: 'plains_walkers#login'
 
   resources :plains_walkers
+
+  resources :decks
 
 	get '/api/decks/:id', to: 'home#get_deck'
 	get '/api/cards/:id', to: "home#get_card"

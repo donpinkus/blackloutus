@@ -1,12 +1,24 @@
 <div class="decksIndex container-fluid">
 	<h1>
-		<a href="/#/deck_editor/new" class="btn btn-primary btn-lg pull-right"><i class="glyphicon glyphicon-plus"></i> Create Deck</a>
-		Your Decks
+		<div class="pull-right">
+			<a href="/#/play" ng-class="{'btn btn-success btn-lg': true, 'disabled': decks.length == 0}">
+				<i class="glyphicon glyphicon-sunglasses"></i> 
+				DO BATTLE
+			</a> 
+			<a href="/#/deck_editor/new" class="btn btn-primary btn-lg">
+				<i class="glyphicon glyphicon-plus"></i> 
+				Create Deck
+			</a>
+		</div>
+		{{ currentUser.name }}'s Decks
 	</h1>
 
 	<br/>
 	
 	<div class="row">
+		<div ng-if="decks.length == 0" class="col-sm-12">
+			<p>You have not created any decks yet.</p>
+		</div>
 		<div ng-repeat="deck in decks" class="col-sm-4">
 			<div class="well deckPreview">
 				<h3 class="text-center"><a href="/#/deck_editor/{{ deck.id }}">{{ deck.name }}</a></h3>

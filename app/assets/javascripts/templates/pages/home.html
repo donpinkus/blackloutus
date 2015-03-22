@@ -15,11 +15,20 @@
   <br/>
 
   <div class="passwordContainer">
-    <input type="text" class="form-control" ng-model="password" placeholder="Lou the loves ..." autofocus />
-    <br/>
-
-     <!-- Grats! you found the password! You must be a quest-expert! -->
-    <a ng-if="password == 'murder'" 
-    href="/#/deck_editor" class="btn btn-primary">Welcome to the black lotus club.</a>
+    <div class="form-group">
+      <input type="text" class="form-control" ng-model="password" placeholder="Lou the cat loves..." autofocus />
+    </div>
+    <div ng-if="password == 'murder'">
+      <div class="form-group">
+        <label>Plainswalker Name</label>
+        <input type="text" class="form-control" ng-model="plainsWalker.name" placeholder="Enter your Plainswalker name." />
+      </div>
+      <div class="form-group">
+        <label>Password</label>
+        <input type="password" class="form-control" ng-model="plainsWalker.password" placeholder="Enter your password." />
+      </div>
+      <!-- Grats! you found the password! You must be a quest-expert! -->
+      <a class="btn btn-primary" ng-click="login()">Enter the black lotus club.</a>
+    </div>
   </div>
 </div>
