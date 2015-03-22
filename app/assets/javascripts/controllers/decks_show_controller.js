@@ -6,13 +6,13 @@ myApp.controller('decksShow', ['$scope', '$http', '$routeParams', '$location', '
 
   // Set Deck. If ID param is set, get the deck, if not create a blank deck.
   if ($routeParams["id"]) {
-    $scope.deck = DeckService.show(parseInt($routeParams["id"], 10));
-    console.log(JSON.stringify($scope.deck));
+  	$scope.deck = DeckService.show(parseInt($routeParams["id"], 10));
+  	console.log(JSON.stringify($scope.deck));
   } else {
-    $scope.deck = { id: null, name: "Untitled Deck", cards: [] };
+  	$scope.deck = { id: null, name: "Untitled Deck", cards: [] };
   }
 
-	$scope.uniqueCountedDeckCards = [];
+  $scope.uniqueCountedDeckCards = [];
   updateUniqueCountedDeckCards();
 
 	// Used in search
@@ -39,7 +39,7 @@ myApp.controller('decksShow', ['$scope', '$http', '$routeParams', '$location', '
 		$scope.deck.cards.push(card);
 		$scope.deck.cards = _.sortBy($scope.deck.cards, 'converted_mana_cost');
 
-    updateUniqueCountedDeckCards();
+		updateUniqueCountedDeckCards();
 	}
 
 
@@ -76,7 +76,7 @@ myApp.controller('decksShow', ['$scope', '$http', '$routeParams', '$location', '
 
 	$scope.saveDeck = function(){
 		DeckService.save($scope.deck);
-    $location.path('/deck_editor');
+		$location.path('/deck_editor');
 	}
 }]);
 
