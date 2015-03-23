@@ -15,8 +15,8 @@
 			<br/>
 
 			<div class="cardResults flex">
-				<img ng-repeat="card in foundCards" 
-					src="http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid={{ card.multiverse_id }}&type=card" 
+				<img ng-repeat="card in foundCards track by card.id" 
+					src="http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid={{ card.multiverseId }}&type=card" 
 					ng-click="addToDeck(card)" />
 			</div>
 		</section>
@@ -39,7 +39,9 @@
 			<div class="deckCards flex">
 				<ul class="deckCardsList">
 					<li ng-repeat="card in uniqueCountedDeckCards" ng-click="removeCardFromDeck(card)" class="{{ card.colors[0] }}">
-						<span class="badge" ng-if="card.converted_mana_cost > 0">{{ card.converted_mana_cost }}</span> &nbsp; 
+						<span class="badge" ng-if="card.convertedManaCost > 0">
+							{{ card.convertedManaCost }}
+						</span> &nbsp; 
 						<span>{{ card.name }}</span>
 						<span class="pull-right">x{{ card.count }}</span>
 					</li>

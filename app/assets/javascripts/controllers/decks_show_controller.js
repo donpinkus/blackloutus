@@ -7,20 +7,24 @@ myApp.controller('decksShow',
   // Set Deck. If ID param is set, get the deck, if not create a blank deck.
   var deckId = $routeParams["id"];
 
-  // If a deck exists, then update it on save. If a deck did not exist, then create it on save.
-  var isDeckUpdate = null;
+  $scope.uniqueCountedDeckCards = [];
 
   if (deckId) {
   	Deck.get(deckId).then(function(deck){
 			$scope.deck = deck;
+
+			setUniqueCountedDeckCards();
 		});
   } else {
-  	$scope.deck = new Deck { id: null, name: "Untitled Deck", cards: [], plains_walker_id: $scope.currentUser.id };
-  }
+  	$scope.deck = new Deck({ 
+  		id: null, 
+  		name: "Untitled Deck", 
+  		cards: [], 
+  		plains_walker_id: $scope.currentUser.id 
+  	});
 
-  // Initialize an array that is used for the sidebar showing card counts. Then set it.
-  $scope.uniqueCountedDeckCards = [];
-  setUniqueCountedDeckCards();
+  	setUniqueCountedDeckCards();
+  }
 
 	// Used in search
 	$scope.cardName = "";
@@ -30,13 +34,17 @@ myApp.controller('decksShow',
 	$scope.$watch('cardName', function(){
 		// Get all cards with this name
 		if ($scope.cardName.length > 2) {
-			$http.get('/api/cards?name=' + $scope.cardName).then(function(results){
+			$http.get('/api/cards.json?name=' + $scope.cardName).then(function(results){
+				// this is to remove angular's $$hashkey from each object, so that _.uniq() works,
+				// since $scope.deck on load does not have any $$hashkey.
+				results = JSON.parse(angular.toJson(results));
 				$scope.foundCards = results.data;
 			});
 		}
 	});
 
 	$scope.addToDeck = function(card){
+		console.log(card);
 		try { 
 			card.colors = JSON.parse(card.colors);
 		} catch(e) { 
@@ -44,7 +52,7 @@ myApp.controller('decksShow',
 		}
 
 		$scope.deck.cards.push(card);
-		$scope.deck.cards = _.sortBy($scope.deck.cards, 'converted_mana_cost');
+		$scope.deck.cards = _.sortBy($scope.deck.cards, 'convertedManaCost');
 
 		setUniqueCountedDeckCards();
 	}
@@ -82,7 +90,13 @@ myApp.controller('decksShow',
 	}
 
 	$scope.saveDeck = function(){
-		DeckService.save($scope.deck);
+		if ($scope.deck.id) {
+			$scope.deck.update();
+		} else {
+			$scope.deck.create();
+		}
+		
+
 		$location.path('/deck_editor');
 	}
 }]);
