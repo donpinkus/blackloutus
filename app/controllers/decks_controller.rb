@@ -7,6 +7,7 @@ class DecksController < ApplicationController
     @decks = Deck.all
     if params[:plains_walker_id]
       @decks = Deck.where(plains_walker_id: params[:plains_walker_id])
+      @decks.order(last_used: :desc, created_at: :asc)
     end
   end
 
