@@ -109,6 +109,8 @@ GEM
     seed_dump (3.2.0)
       activerecord (~> 4)
       activesupport (~> 4)
+    socket.io-rails (1.3.5)
+      railties (>= 3.1)
     spring (1.2.0)
     sprockets (2.12.3)
       hike (~> 1.2)
@@ -153,6 +155,7 @@ DEPENDENCIES
   sass-rails (~> 4.0.3)
   sdoc (~> 0.4.0)
   seed_dump
+  socket.io-rails
   spring
   sqlite3
   uglifier (>= 1.3.0)

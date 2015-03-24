@@ -41,6 +41,8 @@ gem 'seed_dump'
 
 gem 'httparty'
 
+gem 'socket.io-rails'
+
 group :production, :staging do
   gem "rails_12factor"
   gem "rails_stdout_logging"

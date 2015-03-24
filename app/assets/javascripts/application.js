@@ -33,4 +33,6 @@
 
 //= require angular-local-storage/dist/angular-local-storage.js
 
+//= require socket.io
+
 //= require_tree .

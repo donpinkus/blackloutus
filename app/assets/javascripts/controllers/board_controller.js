@@ -1,5 +1,8 @@
 myApp.controller('board', ['$scope', '$http', function($scope, $http){
   console.log('home controller loaded!');
+  var socket = io('localhost:5000');
+  socket.emit('chat message', 'HERRO! from black lotus.');
+
 
   $scope.drawHand = function() {
     for (var i = 0; i < 7; i++) {

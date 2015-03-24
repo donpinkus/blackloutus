@@ -8,6 +8,7 @@
     "angularjs-rails-resource": "latest",
     "underscore": "latest",
     "angular-selectize2": "latest",
-    "angular-local-storage": "latest"
+    "angular-local-storage": "latest",
+    "socket.io": "latest"
   }
 }
