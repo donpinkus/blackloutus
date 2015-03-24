@@ -1,7 +1,8 @@
 myApp.controller('board', ['$scope', '$http', function($scope, $http){
   console.log('home controller loaded!');
   
-  var socket = io('localhost:5000');
+  // TODO add some conditional for environment
+  var socket = io('black-lotus-sockets.herokuapp.com');
   socket.emit('chat message', 'HERRO! from black lotus.');
 
   socket.on('chat message', function(msg){
