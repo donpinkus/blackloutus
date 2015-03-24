@@ -13,7 +13,7 @@
       <span data-turn-step="8" ng-class="{active: turnStep==8}">Main</span>
       <span data-turn-step="9" ng-class="{active: turnStep==9}">Cleanup</span>
     </div>
-    <button class="btn btn-primary next-button" ng-click="nextStep()">Next</button>
+    <button class="btn btn-primary next-button" ng-click="emitNextStep()">Next</button>
   </nav>
 
   <player-board player="plainswalker"></player-board>

@@ -1,7 +1,19 @@
 myApp.controller('board', ['$scope', '$http', function($scope, $http){
   console.log('home controller loaded!');
+  
   var socket = io('localhost:5000');
   socket.emit('chat message', 'HERRO! from black lotus.');
+
+  socket.on('chat message', function(msg){
+    console.log(msg);
+  });
+
+  socket.on('next turn step', function(msg){
+    console.log('next turn step received');
+    console.log(msg);
+
+    $scope.handleNextStep();
+  });
 
 
   $scope.drawHand = function() {
@@ -26,42 +38,48 @@ myApp.controller('board', ['$scope', '$http', function($scope, $http){
 			: $scope.opponent;
   }
 
-  $scope.nextStep = function() {
-  	$scope.turnStep = $scope.turnStep == 9 ? 1 : $scope.turnStep + 1;
+  $scope.emitNextStep = function() {
+    socket.emit('next turn step', true);
+  }
 
-  	var player = $scope.currentPlayer;
-  	switch ($scope.turnStep) {
-  		case 1: // untap
-  			player.battlefield.forEach(function(card) {
-  				card.isTapped = false;
-  			});
-  		  break;
-  		case 2: // upkeep
-  		  break;
-  		case 3: // draw
-  			$scope.draw(player);
-  		  break;
-  		case 4: // main
-  			$scope.nonInstantsArePlayable = true;
-  			player.canPlayLand = true;
-  			// TODO: playing a land should set this to false
-  		  break;
-  		case 5: // attack
-  			$scope.nonInstantsArePlayable = false;
-  			player.canPlayLand = false;
-  		  break;
-  		case 6: // block
+  $scope.handleNextStep = function(){
+    $scope.turnStep = $scope.turnStep == 9 ? 1 : $scope.turnStep + 1;
 
-  		  break;
-  		case 7: // damage
+    var player = $scope.currentPlayer;
+    switch ($scope.turnStep) {
+      case 1: // untap
+        player.battlefield.forEach(function(card) {
+          card.isTapped = false;
+        });
+        break;
+      case 2: // upkeep
+        break;
+      case 3: // draw
+        $scope.draw(player);
+        break;
+      case 4: // main
+        $scope.nonInstantsArePlayable = true;
+        player.canPlayLand = true;
+        // TODO: playing a land should set this to false
+        break;
+      case 5: // attack
+        $scope.nonInstantsArePlayable = false;
+        player.canPlayLand = false;
+        break;
+      case 6: // block
 
-  		  break;
-  		case 8: // main
+        break;
+      case 7: // damage
 
-  		  break;
-  		default: // cleanup
-  			$scope.switchPlayers();
-  	}
+        break;
+      case 8: // main
+
+        break;
+      default: // cleanup
+        $scope.switchPlayers();
+    }
+
+    $scope.$apply();
   }
 
   $scope.draw = function(player) {
