@@ -1,6 +1,11 @@
 myApp.controller('home', ['$scope', '$http', '$location', 'PlainsWalker', 'localStorageService', function($scope, $http, $location, PlainsWalker, localStorageService){
   console.log('hi');
 
+  // If plainswalker exists, redirect to deck_editor.
+  if (localStorageService.get('plains_walker')) {
+    $location.path('/deck_editor');
+  }
+
   $scope.plainsWalker = {
     name: null,
     password: null
