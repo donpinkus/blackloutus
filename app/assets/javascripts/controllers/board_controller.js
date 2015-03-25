@@ -1,9 +1,31 @@
-myApp.controller('board', ['$scope', '$http', function($scope, $http){
+myApp.controller('board', ['$scope', '$http', 'localStorageService', function($scope, $http, localStorageService){
   console.log('home controller loaded!');
   
+  $scope.currentUser = localStorageService.get('plains_walker');
+  $scope.opponent = null;
+
+  $scope.game = {
+    playersReady: false
+  }
+
   // TODO add some conditional for environment
-  var socket = io('black-lotus-sockets.herokuapp.com');
-  socket.emit('chat message', 'HERRO! from black lotus.');
+  var socket = io('localhost:5000');
+
+  socket.on('both players connected', function(msg){
+    console.log('both players connected');
+
+    $scope.game.playersReady = true;
+    socket.emit('player info', $scope.currentUser);
+  });
+
+
+  socket.on('player info', function(opponent){
+    // Set opponent to this player.
+    console.log("received opponent info");
+    console.log(opponent);  
+    $scope.opponent = opponent;
+    $scope.$apply();
+  });
 
   socket.on('chat message', function(msg){
     console.log(msg);
@@ -15,6 +37,10 @@ myApp.controller('board', ['$scope', '$http', function($scope, $http){
 
     $scope.handleNextStep();
   });
+
+  socket.on('broad test', function(msg){
+    console.log('broadcasted');
+  })
 
 
   $scope.drawHand = function() {
@@ -97,50 +123,50 @@ myApp.controller('board', ['$scope', '$http', function($scope, $http){
   // Card is needed for the info
   $scope.nonInstantsArePlayable = false;
 
-  $scope.opponent = {
-    life: 20,
-    hand: [],
-    graveyard: [],
-    library: [],
-    battlefield: [],
-    isOpponent: true,
-    canPlayLand: false,
-    manaPool: {
-      white: 0,
-      green: 0,
-      black: 0,
-      red: 0,
-      blue: 0,
-      colorless: 0
-    }
-  }
+  // $scope.opponent = {
+  //   life: 20,
+  //   hand: [],
+  //   graveyard: [],
+  //   library: [],
+  //   battlefield: [],
+  //   isOpponent: true,
+  //   canPlayLand: false,
+  //   manaPool: {
+  //     white: 0,
+  //     green: 0,
+  //     black: 0,
+  //     red: 0,
+  //     blue: 0,
+  //     colorless: 0
+  //   }
+  // }
 
-  $scope.plainswalker = {
-    life: 20,
-    hand: [],
-    graveyard: [],
-    library: [],
-    battlefield: [],
-    isOpponent: false,
-    canPlayLand: false,
-    manaPool: {
-      white: 0,
-      green: 0,
-      black: 0,
-      red: 0,
-      blue: 0,
-      colorless: 0
-    }
-  }
+  // $scope.plainswalker = {
+  //   life: 20,
+  //   hand: [],
+  //   graveyard: [],
+  //   library: [],
+  //   battlefield: [],
+  //   isOpponent: false,
+  //   canPlayLand: false,
+  //   manaPool: {
+  //     white: 0,
+  //     green: 0,
+  //     black: 0,
+  //     red: 0,
+  //     blue: 0,
+  //     colorless: 0
+  //   }
+  // }
 
   // Example of setting Angular variable from Ajax.
-  $http.get('/api/decks/1').then(function(response){
-    var deck = response.data;
-    $scope.plainswalker.library = deck;
+  // $http.get('/api/decks/1').then(function(response){
+  //   var deck = response.data;
+  //   $scope.plainswalker.library = deck;
 
-    $scope.drawHand();
-  });
+  //   $scope.drawHand();
+  // });
 
 
-  $scope.currentPlayer = $scope.opponent;
+  // $scope.currentPlayer = $scope.opponent;
 }]);
