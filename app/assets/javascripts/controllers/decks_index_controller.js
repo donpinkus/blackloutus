@@ -6,23 +6,12 @@ myApp.controller('decksIndex', ['$scope', '$http', '$routeParams', 'localStorage
 
     // Add meta info to decks
     $scope.decks.forEach(function(deck, i, decks){
-      // Mana Proportions
-      var manaCounts = _.countBy(deck.cards, function(card){
-        return card.colors[0];
-      });
-
-      deck.manaProportions = [];
-
-      _.map(manaCounts, function(count, color){
-        deck.manaProportions[color] = Math.round((count / deck.cards.length) * 100);
-      });
-
       // Max mana card
       var maxCard = _.max(deck.cards, function(card){
-        return card.converted_mana_cost;
+        return card.convertedManaCost;
       });
 
-      deck.maxCardId = maxCard.multiverse_id;
+      deck.maxCardId = maxCard.multiverseId;
     });
   });
 }]);

@@ -91,9 +91,13 @@ myApp.controller('decksShow',
 
 	$scope.saveDeck = function(){
 		if ($scope.deck.id) {
-			$scope.deck.update();
+			$scope.deck.update().then(function(){
+				console.log('deck updated');
+			});
 		} else {
-			$scope.deck.create();
+			$scope.deck.create().then(function(){
+				console.log('deck created');
+			});
 		}
 		
 
