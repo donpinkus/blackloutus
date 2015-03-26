@@ -1,7 +1,8 @@
 myApp.directive('playerBoard', function(){
   return {
     scope: {
-      player: "="
+      player: "=",
+      isOpponent: "@"
     },
     replace: true,
     templateUrl: "player-board.html"

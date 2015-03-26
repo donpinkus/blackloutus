@@ -1,172 +1,93 @@
-myApp.controller('board', ['$scope', '$http', 'localStorageService', function($scope, $http, localStorageService){
-  console.log('home controller loaded!');
-  
-  $scope.currentUser = localStorageService.get('plains_walker');
-  $scope.opponent = null;
+myApp.controller('board', ['$scope', '$http', '$routeParams', 'localStorageService', 'PlainsWalker', 'Deck', function($scope, $http, $routeParams, localStorageService, PlainsWalker, Deck){
+  $scope.players = {
+    me: {
+      info: null,
+      life: 20,
+      deck: null,
+      library: null,
+      hand: [],
+      graveyard: [],
+      drawHand: function(){
+        for (var i = 0; i < 7; i++) {
+          var cardIndex = Math.floor(Math.random() * this.library.length);
+          console.log(cardIndex);
+          this.hand.push(this.library[cardIndex]);
+          this.library.splice(cardIndex, 1);
+        }
+        this.hand = _.sortBy(this.hand, 'convertedManaCost');
+      },
+      drawCard: function(){
+        this.hand.push(this.library.pop());
+      },
+      playCard: function(){
+
+      },
+      tapCard: function(){
+
+      },
+      buryCard: function(){
+
+      }
+    },
+    opponent: {
+      info: null,
+      life: 20,
+      deck: null,
+      library: null,
+      hand: [],
+      graveyard: []
+    }
+  };
 
   $scope.game = {
-    playersReady: false
-  }
-
-  // TODO add some conditional for environment
+    playersConnected: false,
+    ready: false,
+    turn: {
+      step: null,
+      player: null
+    }
+  };
+  
   var socket = io('localhost:5000');
 
   socket.on('both players connected', function(msg){
-    console.log('both players connected');
+    $scope.game.playersConnected = true;
+    
+    var plainsWalkerId = localStorageService.get('plains_walker').id;
 
-    $scope.game.playersReady = true;
-    socket.emit('player info', $scope.currentUser);
+    PlainsWalker.get(plainsWalkerId).then(function(currentUser){
+      $scope.players.me.info = currentUser;
+      
+      Deck.get($routeParams["deck"]).then(function(deck){
+        console.log(deck);
+        $scope.players.me.deck = deck;
+        $scope.players.me.library = deck.cards;
+        $scope.players.me.drawHand();
+
+        console.log($scope.players);
+
+        socket.emit('player info', $scope.players.me);
+      });
+    });
   });
-
 
   socket.on('player info', function(opponent){
     // Set opponent to this player.
-    console.log("received opponent info");
-    console.log(opponent);  
-    $scope.opponent = opponent;
+    $scope.players.opponent.info = opponent.info;
+    $scope.players.opponent.library = opponent.library;
+    $scope.players.opponent.hand = opponent.hand;
+    $scope.players.opponent.graveyard = [];
+
+    $scope.game.ready = true;
+
     $scope.$apply();
   });
 
-  socket.on('chat message', function(msg){
-    console.log(msg);
-  });
-
   socket.on('next turn step', function(msg){
-    console.log('next turn step received');
-    console.log(msg);
-
     $scope.handleNextStep();
   });
 
   socket.on('broad test', function(msg){
     console.log('broadcasted');
   })
-
-
-  $scope.drawHand = function() {
-    for (var i = 0; i < 7; i++) {
-      var cardIndex = Math.floor(Math.random() * $scope.plainswalker.library.length)
-      $scope.plainswalker.hand.push($scope.plainswalker.library[cardIndex]);
-      $scope.plainswalker.library.splice(cardIndex, 1);
-    }
-    $scope.plainswalker.hand = sortHand($scope.plainswalker.hand);
-  }
-
-  // TODO: attach this to a "hand" object.
-  function sortHand(hand) {
-    var hand = _.sortBy(hand, 'converted_mana_cost');
-    return hand;
-  }
-
-  // TODO: attach this to a "turn" object.
-  $scope.switchPlayers = function() {
-  	$scope.currentPlayer = $scope.currentPlayer == $scope.opponent
-			? $scope.plainswalker
-			: $scope.opponent;
-  }
-
-  $scope.emitNextStep = function() {
-    socket.emit('next turn step', true);
-  }
-
-  $scope.handleNextStep = function(){
-    $scope.turnStep = $scope.turnStep == 9 ? 1 : $scope.turnStep + 1;
-
-    var player = $scope.currentPlayer;
-    switch ($scope.turnStep) {
-      case 1: // untap
-        player.battlefield.forEach(function(card) {
-          card.isTapped = false;
-        });
-        break;
-      case 2: // upkeep
-        break;
-      case 3: // draw
-        $scope.draw(player);
-        break;
-      case 4: // main
-        $scope.nonInstantsArePlayable = true;
-        player.canPlayLand = true;
-        // TODO: playing a land should set this to false
-        break;
-      case 5: // attack
-        $scope.nonInstantsArePlayable = false;
-        player.canPlayLand = false;
-        break;
-      case 6: // block
-
-        break;
-      case 7: // damage
-
-        break;
-      case 8: // main
-
-        break;
-      default: // cleanup
-        $scope.switchPlayers();
-    }
-
-    $scope.$apply();
-  }
-
-  $scope.draw = function(player) {
-  	player.hand.push(player.library.pop())
-  }
-
-  $scope.turnStep = 1;
-
-  // TODO: Maybe we should have a canPlay(turn, turnStep, player.manaPool, card); function... not sure
-  //
-  // Turn has info about whether lands have been played
-  // TurnStep has info about the "types" that can be played
-  // player.manaPool checks whether there is enough mana to play the card
-  // Card is needed for the info
-  $scope.nonInstantsArePlayable = false;
-
-  // $scope.opponent = {
-  //   life: 20,
-  //   hand: [],
-  //   graveyard: [],
-  //   library: [],
-  //   battlefield: [],
-  //   isOpponent: true,
-  //   canPlayLand: false,
-  //   manaPool: {
-  //     white: 0,
-  //     green: 0,
-  //     black: 0,
-  //     red: 0,
-  //     blue: 0,
-  //     colorless: 0
-  //   }
-  // }
-
-  // $scope.plainswalker = {
-  //   life: 20,
-  //   hand: [],
-  //   graveyard: [],
-  //   library: [],
-  //   battlefield: [],
-  //   isOpponent: false,
-  //   canPlayLand: false,
-  //   manaPool: {
-  //     white: 0,
-  //     green: 0,
-  //     black: 0,
-  //     red: 0,
-  //     blue: 0,
-  //     colorless: 0
-  //   }
-  // }
-
-  // Example of setting Angular variable from Ajax.
-  // $http.get('/api/decks/1').then(function(response){
-  //   var deck = response.data;
-  //   $scope.plainswalker.library = deck;
-
-  //   $scope.drawHand();
-  // });
-
-
-  // $scope.currentPlayer = $scope.opponent;
 }]);
